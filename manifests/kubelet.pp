@@ -5,6 +5,7 @@ class kubernetes::kubelet(
   String $kubelet_dir = '/var/lib/kubelet',
   Optional[String] $network_plugin = undef,
   Integer $network_plugin_mtu = 1460,
+  Integer $ipp_deadline_minutes = 5,
   Boolean $allow_privileged = true,
   Boolean $register_node = true,
   Optional[Boolean] $register_schedulable = undef,
