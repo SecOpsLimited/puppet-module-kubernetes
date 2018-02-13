@@ -75,6 +75,7 @@ ExecStart=<%= scope['kubernetes::_dest_dir'] %>/kubelet \
   --kubelet-cgroups=/systemd/system.slice \
 <% end -%>
 <% end -%>
+  --image-pull-progress-deadline=<%= @ipp_deadline_minutes %>m \
   --logtostderr=true
 
 Restart=on-failure
