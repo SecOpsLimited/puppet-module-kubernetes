@@ -9,6 +9,10 @@ Group=<%= scope['kubernetes::group'] %>
 <%- if scope['kubernetes::_service_account_key_file'] and scope['kubernetes::service_account_key_generate'] -%>
 ExecStartPre=/bin/sh -c "test -e <%= scope['kubernetes::_service_account_key_file'] %> || { openssl genrsa -out <%= scope['kubernetes::_service_account_key_file'] %> 2048 && chmod 640 <%= scope['kubernetes::_service_account_key_file'] %>; }"
 <% end -%>
+<%- if scope['kubernetes::cloud_provider'] == 'vsphere' -%>
+PermissionsStartOnly=true
+ExecStartPre=/bin/chmod 404 /sys/class/dmi/id/product_serial
+<% end -%>
 ExecStart=<%= scope['kubernetes::_dest_dir'] %>/apiserver \
   --v=<%= scope['kubernetes::log_level'] %> \
 <% if @allow_privileged -%>
