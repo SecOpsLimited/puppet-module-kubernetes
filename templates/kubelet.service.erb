@@ -54,6 +54,9 @@ ExecStart=<%= scope['kubernetes::_dest_dir'] %>/kubelet \
 <% if @cloud_provider != '' -%>
   --cloud-provider=<%= @cloud_provider %> \
 <% end -%>
+<% if @cloud_provider == 'vsphere' and @cloud_config != '' -%>
+  --cloud-config=<%= @cloud_config %> \
+<% end -%>
 <% if @container_runtime -%>
   --container-runtime=<%= @container_runtime %> \
 <% end -%>
