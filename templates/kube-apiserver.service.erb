@@ -29,7 +29,7 @@ ExecStart=<%= scope['kubernetes::_dest_dir'] %>/apiserver \
   --cloud-provider=<%= scope['kubernetes::cloud_provider'] %> \
 <% end -%>
 <% if scope['kubernetes::cloud_provider'] == 'vsphere' and scope['kubernetes::cloud_config'] != '' -%>
-  --cloud-config=<% scope['kubernetes::cloud_config'] %> \
+  --cloud-config=<%= scope['kubernetes::cloud_config'] %> \
 <% end -%>
 <% if scope['kubernetes::apiserver::ca_file'] -%>
   --client-ca-file=<%= scope['kubernetes::apiserver::ca_file'] %> \
